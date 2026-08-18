@@ -8,6 +8,25 @@ Tenhle dokument popisuje **jak nástroj ovládat**. Jak funguje uvnitř (proč j
 udělaný zrovna takhle, co dělá který soubor) je popsáno v
 [JAK_TO_FUNGUJE.md](JAK_TO_FUNGUJE.md).
 
+## Jak to vypadá
+
+```ansi
+[32m   ___[0m
+[32m  /   \[0m    [1;32mPROTC_OTISK[0m
+[32m | * * |[0m   otisk dokumentace tepelnych cerpadel
+[32m  \___/[0m    [2mby Kotrsal[0m
+
+Log tohoto behu: logs/snapshot_20260819_100530.log
+Overuji session...
+  session OK (stazitelnych: 124, zamcenych: 0)
+
+Ctu rozcestnik dokumentace...
+  nalezeno 72 produktu / podstranek
+
+
+  [[32m###########[0m-----------------]  40%  29/72  ETA ~48s
+```
+
 ## Rychlý start
 
 Ve složce jsou tři spouštěcí soubory — podle jména rovnou poznáš, který je
