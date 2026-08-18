@@ -1,0 +1,33 @@
+# PROTC_OTISK - vychozi nastaveni pro "snapshot"
+#
+# Zmenou hodnoty tady se zmeni vychozi chovani, aniz by bylo nutne pokazde
+# psat volbu v prikazove radce - napr. "format = csv" znamena, ze
+# "python protc_otisk.py snapshot" bez --format rovnou zapise CSV.
+# Cokoliv zadane primo v prikazove radce (--format xlsx apod.) tohle
+# nastaveni pro dany beh prebije.
+#
+# Radky zacinajici # jsou komentar, prazdne radky se ignoruji. Soubor je
+# cely volitelny - kdyz neexistuje nebo je klic prazdny, pouzije se vestaveny
+# default popsany v README.md.
+
+# format vystupu: xlsx, csv, nebo both
+format = xlsx
+
+# jen dane typy souboru, carkou oddelene (napr. pdf,dwg), nebo "all"
+types = all
+
+# filtry produktu/dokumentu - prazdne = zadny filtr. Substring, bez ohledu
+# na velikost pismen i diakritiku (viz README.md).
+category =
+brand =
+product_type =
+section =
+
+# true/false - viditelny prohlizec pri kazdem behu (misto --headed)
+headed = false
+
+# true/false - bez prihlaseni, jen verejna cast webu (misto --no-session)
+no_session = false
+
+# true/false - scrape bez zapisu vystupu, jen souhrn (misto --dry-run)
+dry_run = false
