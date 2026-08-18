@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="340" viewBox="0 0 640 340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace">
+  <rect x="0.5" y="0.5" width="639" height="339" rx="10" fill="#0d1117" stroke="#30363d"/>
+
+  <!-- title bar -->
+  <rect x="0.5" y="0.5" width="639" height="34" rx="10" fill="#161b22"/>
+  <rect x="0.5" y="24.5" width="639" height="10" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="17" r="6" fill="#ffbd2e"/>
+  <circle cx="66" cy="17" r="6" fill="#27c93f"/>
+  <text x="320" y="21" font-size="12" fill="#8b949e" text-anchor="middle">protc_otisk.py&#160;snapshot</text>
+
+  <g font-size="14" fill="#c9d1d9">
+    <text x="20" y="60"><tspan fill="#3fb950">&#160;&#160;&#160;___</tspan></text>
+    <text x="20" y="80"><tspan fill="#3fb950">&#160;&#160;/&#160;&#160;&#160;\</tspan><tspan fill="#3fb950" font-weight="bold">&#160;&#160;&#160;&#160;PROTC_OTISK</tspan></text>
+    <text x="20" y="100"><tspan fill="#3fb950">&#160;|&#160;*&#160;*&#160;|</tspan><tspan>&#160;&#160;&#160;otisk&#160;dokumentace&#160;tepelnych&#160;cerpadel</tspan></text>
+    <text x="20" y="120"><tspan fill="#3fb950">&#160;&#160;\___/</tspan><tspan fill="#8b949e">&#160;&#160;&#160;&#160;by&#160;Kotrsal</tspan></text>
+
+    <text x="20" y="160"><tspan>Log&#160;tohoto&#160;behu:&#160;logs/snapshot_20260819_100530.log</tspan></text>
+    <text x="20" y="180"><tspan>Overuji&#160;session...</tspan></text>
+    <text x="20" y="200"><tspan>&#160;&#160;session&#160;OK&#160;(stazitelnych:&#160;124,&#160;zamcenych:&#160;0)</tspan></text>
+
+    <text x="20" y="240"><tspan>Ctu&#160;rozcestnik&#160;dokumentace...</tspan></text>
+    <text x="20" y="260"><tspan>&#160;&#160;nalezeno&#160;72&#160;produktu&#160;/&#160;podstranek</tspan></text>
+
+    <text x="20" y="300"><tspan>&#160;&#160;[</tspan><tspan fill="#3fb950">###########</tspan><tspan fill="#484f58">-----------------</tspan><tspan>]&#160;&#160;40%&#160;29/72&#160;ETA&#160;~48s</tspan></text>
+  </g>
+</svg>

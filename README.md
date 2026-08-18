@@ -10,21 +10,10 @@ udělaný zrovna takhle, co dělá který soubor) je popsáno v
 
 ## Jak to vypadá
 
-```
-   ___
-  /   \    PROTC_OTISK
- | * * |   otisk dokumentace tepelnych cerpadel
-  \___/    by Kotrsal
+![Ukázka běhu v terminálu — banner, průběh a zelený progress bar](assets/terminal-preview.svg)
 
-Log tohoto behu: logs/snapshot_20260819_100530.log
-Overuji session...
-  session OK (stazitelnych: 124, zamcenych: 0)
-
-Ctu rozcestnik dokumentace...
-  nalezeno 72 produktu / podstranek
-
-  [###########-----------------]  40%  29/72  ETA ~48s
-```
+(Statický obrázek — GitHub README bohužel neumí vykreslit barvy přímo
+z textového terminálového výstupu, jen z obrázku.)
 
 ## Rychlý start
 
