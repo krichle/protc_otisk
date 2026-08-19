@@ -8,7 +8,7 @@ Scraper webu `projektuj-tepelna-cerpadla.cz` (sekce Dokumentace ke stažení).
 Projde všechny produktové stránky, zaznamená každý dokument (kde je, jak se
 jmenuje popis, název souboru, typ, velikost) a uloží do Excelu a/nebo CSV
 (volba `--format`), aby se dal otisk snadno zpracovat i mimo Excel — třeba
-naimportovat do jiné aplikace.
+naimportovat do jiné aplikace..
 
 Porovnávání dvou otisků (bývalý `compare.py`) bylo **odstraněno** — nástroj
 teď dělá jen otisk, žádný diff. Identita řádku (kdyby ji chtěl spočítat
