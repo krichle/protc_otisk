@@ -25,9 +25,11 @@ if not exist ".venv" (
 python protc_otisk.py %*
 
 REM Pri dvojkliku (zadne argumenty) by se okno hned po skonceni zavrelo -
-REM necha se otevrene, aby slo precist banner/napovedu. Pri spusteni z
-REM prikazove radky (nejaky argument zadany) se pause preskoci.
+REM misto pouheho "stiskni klavesu a zavri" se necha otevrene jako normalni
+REM interaktivni prompt (venv zustava aktivni), takze se rovnou da psat
+REM "python protc_otisk.py login" apod. bez dalsiho dvojkliku. Pri spusteni
+REM z prikazove radky (nejaky argument zadany) se to preskoci.
 if "%~1"=="" (
     echo.
-    pause
+    cmd /k
 )
