@@ -31,3 +31,8 @@ no_session = false
 
 # true/false - scrape bez zapisu vystupu, jen souhrn (misto --dry-run)
 dry_run = false
+
+# true/false - zaznamenat i sekci "Nejvyhledavanejsi dokumenty" (misto
+# --nejvyhledavanejsi). Vychozi false, protoze jsou to duplicity dokumentu,
+# ktere uz jsou v jinych sekcich nize na produktove strance.
+nejvyhledavanejsi = false

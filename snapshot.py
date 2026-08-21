@@ -19,6 +19,7 @@ Spusteni:
     python snapshot.py --category "vzduch/voda" --brand ivt  # filtr produktu
     python snapshot.py --section "technicke listy"           # filtr sekci
     python snapshot.py --dry-run          # jen souhrn, nic se nezapise
+    python snapshot.py --nejvyhledavanejsi  # zaznamenat i "Nejvyhledavanejsi dokumenty"
 """
 
 import argparse
@@ -287,15 +288,20 @@ JS_PRODUCT = r"""
 """
 
 
-# Sekce, ktere se do vysledku vubec nezaznamenavaji (nejsou to skutecne
-# kategorie dokumentu, ale marketingove/informacni bloky).
+# Sekce, ktere se do vysledku vubec nezaznamenavaji vzdy (nejsou to skutecne
+# kategorie dokumentu, ale marketingovy/informacni blok bez dokumentu).
 EXCLUDED_SECTIONS = {
-    "Nejvyhledávanější dokumenty",
     "Aktuální informace o dostupnosti výrobku",
 }
 
+# "Nejvyhledávanější dokumenty" je specialni pripad - jsou to skutecne
+# dokumenty, jen duplicitni s tim, co uz je v jine sekci nize na strance
+# (technicke listy, navody...). Ve vychozim stavu se proto nezaznamenava,
+# aby otisk neobsahoval duplicity - jde zapnout pres --nejvyhledavanejsi.
+NEJVYHLEDAVANEJSI_SECTION = "Nejvyhledávanější dokumenty"
 
-def scrape_product(page, product):
+
+def scrape_product(page, product, include_nejvyhledavanejsi=False):
     page.goto(product["produkt_url"], wait_until="domcontentloaded")
     page.wait_for_timeout(800)
 
@@ -310,6 +316,8 @@ def scrape_product(page, product):
         sekce = r["sekce"]
         popis = r["popis"]
         if not popis or sekce in EXCLUDED_SECTIONS:
+            continue
+        if sekce == NEJVYHLEDAVANEJSI_SECTION and not include_nejvyhledavanejsi:
             continue
 
         # Novy radek = jina sekce NEBO jiny popis
@@ -474,6 +482,11 @@ def main():
     ap.add_argument("--dry-run", action="store_true", dest="dry_run",
                      default=cfg_bool(cfg, "dry_run"),
                      help="provede cely scrape, ale nic nezapise - jen ukaze souhrn")
+    ap.add_argument("--nejvyhledavanejsi", action="store_true",
+                     default=cfg_bool(cfg, "nejvyhledavanejsi"),
+                     help="zaznamenat i sekci 'Nejvyhledavanejsi dokumenty' "
+                          "(vychozi vypnuto - jsou to duplicity dokumentu, "
+                          "ktere uz jsou v jinych sekcich nize na strance)")
 
     # parse_known_args misto parse_args, abychom u preklepu ve volbe
     # (napr. "--forma") mohli sami poradit nejblizsi platnou volbu, misto
@@ -589,7 +602,7 @@ def main():
                 recs = None
                 for pokus in range(1, MAX_POKUSU + 1):
                     try:
-                        recs = scrape_product(page, prod)
+                        recs = scrape_product(page, prod, include_nejvyhledavanejsi=args.nejvyhledavanejsi)
                         break
                     except Exception:
                         if pokus < MAX_POKUSU:

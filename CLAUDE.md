@@ -192,6 +192,16 @@ pokus se počítá do `chyby` a loguje se s tracebackem.
 **`--dry-run`** přeskočí `write_xlsx`/`write_csv` úplně — scrape i filtry
 proběhnou normálně, jen se nikam nezapíše.
 
+**`--nejvyhledavanejsi`** — sekce „Nejvyhledávanější dokumenty" (viz seznam
+sekcí GEO 700 výše) obsahuje dokumenty, které jsou zároveň i v jiných sekcích
+níž na stránce (jsou to jen zkratky/výběr), takže se ve `scrape_product`
+ve výchozím stavu zahazují stejně jako `EXCLUDED_SECTIONS` (`div.toggle-block-
+title-text` == `NEJVYHLEDAVANEJSI_SECTION`), aby otisk neobsahoval
+duplicitní řádky. `--nejvyhledavanejsi` (i `nejvyhledavanejsi = true` v
+`config.txt`) tohle zahazování vypne a sekce se zaznamená jako kterákoliv
+jiná — `scrape_product` bere `include_nejvyhledavanejsi` jako parametr,
+`main()` mu předává `args.nejvyhledavanejsi`.
+
 **Napovídání překlepů** (`difflib.get_close_matches`) — `protc_otisk.py`
 ho použije na neznámý podpříkaz (`COMMANDS = ("login", "snapshot")`,
 `snpashot` → „Možná jsi myslel: 'snapshot'?"). `snapshot.py` volá
@@ -270,6 +280,9 @@ python protc_otisk.py snapshot --section "Technické listy"
 
 # Zkusebni beh bez zapisu vystupu (jen souhrn v konzoli/logu)
 python protc_otisk.py snapshot --dry-run
+
+# Zaznamenat i sekci "Nejvyhledavanejsi dokumenty" (vychozi vypnuto)
+python protc_otisk.py snapshot --nejvyhledavanejsi
 ```
 
 `protc_otisk.py` je jen tenký CLI obal (subcommand dispatcher) nad `login.py` a
@@ -328,6 +341,9 @@ jednotlivých produktů i fatální pády jsou tam zalogované přes
   (`print_banner()`, zelený `ProgressBar`)
 - ~~Konfigurovatelné výchozí hodnoty (`--format` atd.) bez psaní do CLI~~ —
   hotovo (`config.txt`, `load_config()`), nápověda je zobrazuje dynamicky
+- ~~Volitelné zaznamenání sekce "Nejvyhledávanější dokumenty"~~ — hotovo
+  (`--nejvyhledavanejsi` / `nejvyhledavanejsi = true` v `config.txt`,
+  výchozí vypnuto)
 - SHA-256 hash stažených souborů → poznat přejmenování bez změny obsahu
   (vyžaduje reálně stahovat soubory, ne jen zaznamenávat metadata — zatím
   vědomě odloženo)

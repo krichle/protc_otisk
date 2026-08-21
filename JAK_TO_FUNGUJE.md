@@ -229,9 +229,15 @@ div.toggle-block                    <- cely blok jedne sekce
 - pozná zamčený dokument podle `href === 'javascript:;'`.
 
 Sekce, které nejsou skutečnou kategorií dokumentů, ale marketingový/
-informační blok (`Nejvyhledávanější dokumenty`,
-`Aktuální informace o dostupnosti výrobku`), se v `EXCLUDED_SECTIONS`
-rovnou zahazují.
+informační blok bez dokumentů (`Aktuální informace o dostupnosti výrobku`),
+se v `EXCLUDED_SECTIONS` rovnou zahazují vždy.
+
+Sekce `Nejvyhledávanější dokumenty` je jiný případ — jsou to skutečné
+dokumenty, jen duplicitní s tím, co je i v jiných sekcích níž na stránce.
+Proto se ve výchozím stavu taky zahazuje (`NEJVYHLEDAVANEJSI_SECTION`), ale
+jde to zapnout volbou `--nejvyhledavanejsi` (nebo `nejvyhledavanejsi = true`
+v `config.txt`) — `scrape_product` pak dostane `include_nejvyhledavanejsi=True`
+a sekci zaznamená jako kteroukoliv jinou.
 
 ### Jak se skládá pořadí dokumentů
 
