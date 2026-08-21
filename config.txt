@@ -36,3 +36,7 @@ dry_run = false
 # --nejvyhledavanejsi). Vychozi false, protoze jsou to duplicity dokumentu,
 # ktere uz jsou v jinych sekcich nize na produktove strance.
 nejvyhledavanejsi = false
+
+# true/false - nezaznamenavat DWG soubory (misto --no-dwg). Vychozi false
+# (DWG se zaznamenavaji). Nezavisle na "types" vyse.
+no_dwg = false

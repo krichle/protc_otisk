@@ -134,6 +134,7 @@ Volby:
 | `--product-type text,text` | filtr produktů podle typu produktu (substring) |
 | `--section text,text` | filtr dokumentů podle sekce (substring) — na rozdíl od předchozích tří se aplikuje až po načtení produktové stránky |
 | `--nejvyhledavanejsi` | zaznamenat i sekci *Nejvyhledávanější dokumenty* (výchozí vypnuto — jsou to duplicity dokumentů, které jsou i v jiných sekcích níž na produktové stránce) |
+| `--no-dwg` | nezaznamenávat DWG soubory (výchozí zapnuto/zaznamenávat) — nezávislá zkratka vedle `--types`, netřeba kvůli tomu psát `--types pdf` |
 
 Filtry jsou substring match a nezáleží u nich ani na velikosti písmen, ani
 na diakritice — `--section "technicke listy"` najde i `Technické listy`.
@@ -172,6 +173,7 @@ python protc_otisk.py snapshot --category "vzduch/voda" --brand ivt   # jen IVT 
 python protc_otisk.py snapshot --section "Technické listy"            # jen jedna sekce
 python protc_otisk.py snapshot --dry-run                   # jen souhrn, nic se nezapise
 python protc_otisk.py snapshot --nejvyhledavanejsi          # i sekce "Nejvyhledávanější dokumenty"
+python protc_otisk.py snapshot --no-dwg                     # bez DWG souborů
 ```
 
 Malý banner (`PROTC_OTISK — by Kotršál`) se ukáže jen **jednou**, když

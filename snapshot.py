@@ -20,6 +20,7 @@ Spusteni:
     python snapshot.py --section "technicke listy"           # filtr sekci
     python snapshot.py --dry-run          # jen souhrn, nic se nezapise
     python snapshot.py --nejvyhledavanejsi  # zaznamenat i "Nejvyhledavanejsi dokumenty"
+    python snapshot.py --no-dwg           # nezaznamenavat DWG soubory
 """
 
 import argparse
@@ -487,6 +488,11 @@ def main():
                      help="zaznamenat i sekci 'Nejvyhledavanejsi dokumenty' "
                           "(vychozi vypnuto - jsou to duplicity dokumentu, "
                           "ktere uz jsou v jinych sekcich nize na strance)")
+    ap.add_argument("--no-dwg", action="store_true", dest="no_dwg",
+                     default=cfg_bool(cfg, "no_dwg"),
+                     help="nezaznamenavat DWG soubory (vychozi zaznamenavat) - "
+                          "zkratka za '--types' bez 'dwg', nezavisla na tom, "
+                          "co je zadane v --types")
 
     # parse_known_args misto parse_args, abychom u preklepu ve volbe
     # (napr. "--forma") mohli sami poradit nejblizsi platnou volbu, misto
@@ -649,6 +655,11 @@ def main():
         pred_filtr = len(records)
         records = [r for r in records if r["typ_souboru"].upper() in wanted_types]
         logger.info(f"\nFiltr --types {args.types}: {pred_filtr} -> {len(records)} radku")
+
+    if args.no_dwg:
+        pred_filtr = len(records)
+        records = [r for r in records if r["typ_souboru"].upper() != "DWG"]
+        logger.info(f"Filtr --no-dwg: {pred_filtr} -> {len(records)} radku")
 
     if wanted_section is not None:
         pred_filtr = len(records)

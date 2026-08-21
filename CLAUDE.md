@@ -202,6 +202,13 @@ duplicitní řádky. `--nejvyhledavanejsi` (i `nejvyhledavanejsi = true` v
 jiná — `scrape_product` bere `include_nejvyhledavanejsi` jako parametr,
 `main()` mu předává `args.nejvyhledavanejsi`.
 
+**`--no-dwg`** — nezávislá zkratka vedle `--types` pro vypnutí zaznamenávání
+DWG souborů (výchozí zapnuto/zaznamenávat). Filtruje se v `main()` hned za
+filtrem `--types`, na `records` po scrapu (`r["typ_souboru"].upper() !=
+"DWG"`), takže funguje i nezávisle na tom, co je zadané v `--types` (tedy
+`--types all --no-dwg` je jinak zapsané totéž jako `--types pdf`, jen bez
+nutnosti vyjmenovávat, co všechno kromě DWG chci).
+
 **Napovídání překlepů** (`difflib.get_close_matches`) — `protc_otisk.py`
 ho použije na neznámý podpříkaz (`COMMANDS = ("login", "snapshot")`,
 `snpashot` → „Možná jsi myslel: 'snapshot'?"). `snapshot.py` volá
@@ -283,6 +290,9 @@ python protc_otisk.py snapshot --dry-run
 
 # Zaznamenat i sekci "Nejvyhledavanejsi dokumenty" (vychozi vypnuto)
 python protc_otisk.py snapshot --nejvyhledavanejsi
+
+# Bez DWG souboru (vychozi zaznamenavat)
+python protc_otisk.py snapshot --no-dwg
 ```
 
 `protc_otisk.py` je jen tenký CLI obal (subcommand dispatcher) nad `login.py` a
@@ -344,6 +354,8 @@ jednotlivých produktů i fatální pády jsou tam zalogované přes
 - ~~Volitelné zaznamenání sekce "Nejvyhledávanější dokumenty"~~ — hotovo
   (`--nejvyhledavanejsi` / `nejvyhledavanejsi = true` v `config.txt`,
   výchozí vypnuto)
+- ~~Vypnutí zaznamenávání DWG souborů bez psaní `--types`~~ — hotovo
+  (`--no-dwg` / `no_dwg = true` v `config.txt`, výchozí zapnuto/zaznamenávat)
 - SHA-256 hash stažených souborů → poznat přejmenování bez změny obsahu
   (vyžaduje reálně stahovat soubory, ne jen zaznamenávat metadata — zatím
   vědomě odloženo)
